@@ -126,6 +126,8 @@
 #include <gui/DialogEditPAT.h>
 #include <ui_DialogEditPAT.h>
 
+#include <gui/DialogWGS.h>
+
 ////////////////////////////////////////////////////////////////////////////////
 
 DialogEditPAT::DialogEditPAT(QWidget *parent) :
@@ -215,4 +217,25 @@ void DialogEditPAT::save()
 void DialogEditPAT::on_checkBoxDepthSortedBin_toggled(bool checked)
 {
     _ui->spinBoxDepthSortedBin->setEnabled( checked );
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogEditPAT::on_pushButtonFromGeo_clicked()
+{
+    DialogWGS::PosAtt pos_att = DialogWGS::getPosAtt( this );
+
+    if ( pos_att.accepted )
+    {
+        //_ui->radioButtonZYX->setChecked( true );
+        _ui->radioButtonXYZ->setChecked( true );
+
+        _ui->spinBoxPositionX->setValue( pos_att.x );
+        _ui->spinBoxPositionY->setValue( pos_att.y );
+        _ui->spinBoxPositionZ->setValue( pos_att.z );
+
+        _ui->spinBoxAttitudeX->setValue( osg::RadiansToDegrees( pos_att.phi ) );
+        _ui->spinBoxAttitudeY->setValue( osg::RadiansToDegrees( pos_att.tht ) );
+        _ui->spinBoxAttitudeZ->setValue( osg::RadiansToDegrees( pos_att.psi ) );
+    }
 }

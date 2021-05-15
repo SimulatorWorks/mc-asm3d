@@ -268,7 +268,7 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
          <property name="maximum">
-          <double>600.000000000000000</double>
+          <double>2000.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -399,7 +399,7 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
          <property name="maximum">
-          <double>600.000000000000000</double>
+          <double>2000.000000000000000</double>
          </property>
         </widget>
        </item>

@@ -158,6 +158,8 @@ private slots:
 
     void on_checkBoxDepthSortedBin_toggled( bool checked );
 
+    void on_pushButtonFromGeo_clicked();
+
 private:
 
     Ui::DialogEditPAT *_ui;

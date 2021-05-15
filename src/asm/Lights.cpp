@@ -1447,6 +1447,8 @@ void Lights::TDZL::createTDZL( osgSim::LightPointNode *lightPointNode,
 void Lights::VGSI::createPAPI( osgSim::LightPointNode *lightPointNode,
                                float xdel, float ydel )
 {
+    if ( ydel < 0.0 ) ydel -= 3.0f * 9.0f;
+
     float ya = -ydel - 9.0f * 3.0f;
     float yb = -ydel - 9.0f * 2.0f;
     float yc = -ydel - 9.0f;

@@ -148,13 +148,55 @@ class DialogWGS : public QDialog
 
 public:
 
+    struct PosAtt
+    {
+        double x;
+        double y;
+        double z;
+
+        double phi;
+        double tht;
+        double psi;
+
+        bool accepted;
+    };
+
+    static PosAtt getPosAtt( QWidget *parent = Q_NULLPTR );
+
     explicit DialogWGS( QWidget *parent = nullptr );
 
     ~DialogWGS();
 
+    inline double getX() const { return _x; }
+    inline double getY() const { return _y; }
+    inline double getZ() const { return _z; }
+
+    inline double getPhi() const { return _phi; }
+    inline double getTht() const { return _tht; }
+    inline double getPsi() const { return _psi; }
+
 private:
 
     Ui::DialogWGS *_ui;
+
+    double _x;      ///< [m]
+    double _y;      ///< [m]
+    double _z;      ///< [m]
+
+    double _phi;    ///< [rad]
+    double _tht;    ///< [rad]
+    double _psi;    ///< [rad]
+
+    bool _reversed;
+
+    void calc();
+
+private slots:
+
+    void on_spinBoxLat_valueChanged(double arg1);
+    void on_spinBoxLon_valueChanged(double arg1);
+    void on_spinBoxAlt_valueChanged(double arg1);
+    void on_checkBoxRev_toggled(bool checked);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
