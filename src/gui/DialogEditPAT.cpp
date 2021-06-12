@@ -135,7 +135,7 @@ DialogEditPAT::DialogEditPAT(QWidget *parent) :
     _ui(new Ui::DialogEditPAT),
     _pat( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

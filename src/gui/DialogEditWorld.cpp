@@ -135,7 +135,7 @@ DialogEditWorld::DialogEditWorld(QWidget *parent) :
     _ui(new Ui::DialogEditWorld),
     _world( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

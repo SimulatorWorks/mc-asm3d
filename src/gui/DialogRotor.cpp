@@ -142,7 +142,7 @@ DialogRotor::DialogRotor(QWidget *parent) :
     _timerId ( 0 ),
     _ccw ( false )
 {
-    ui->setupUi(this);
+    ui->setupUi( this );
 
     _timerId = startTimer( 10 );
 }

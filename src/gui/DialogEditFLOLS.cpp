@@ -135,7 +135,7 @@ DialogEditFLOLS::DialogEditFLOLS(QWidget *parent) :
     _ui(new Ui::DialogEditFLOLS),
     _flols( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

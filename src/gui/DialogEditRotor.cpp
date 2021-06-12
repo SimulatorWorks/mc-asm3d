@@ -135,7 +135,7 @@ DialogEditRotor::DialogEditRotor(QWidget *parent) :
     _ui(new Ui::DialogEditRotor),
     _rotor( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

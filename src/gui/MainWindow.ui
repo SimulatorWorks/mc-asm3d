@@ -17,9 +17,6 @@
    <iconset resource="../mc-asm3d.qrc">
     <normaloff>:/gui/images/icon.svg</normaloff>:/gui/images/icon.svg</iconset>
   </property>
-  <property name="locale">
-   <locale language="Polish" country="Poland"/>
-  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">

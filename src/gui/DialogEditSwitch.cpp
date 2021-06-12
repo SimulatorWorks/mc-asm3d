@@ -133,7 +133,7 @@ DialogEditSwitch::DialogEditSwitch(QWidget *parent) :
     _ui(new Ui::DialogEditSwitch),
     _switch ( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

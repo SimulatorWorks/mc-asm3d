@@ -133,7 +133,7 @@ DialogEditSmoke::DialogEditSmoke(QWidget *parent) :
     _ui(new Ui::DialogEditSmoke),
     _smoke( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

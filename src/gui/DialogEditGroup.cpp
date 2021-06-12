@@ -133,7 +133,7 @@ DialogEditGroup::DialogEditGroup(QWidget *parent) :
     _ui(new Ui::DialogEditGroup),
     _group ( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

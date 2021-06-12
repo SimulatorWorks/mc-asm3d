@@ -135,7 +135,7 @@ DialogEditNozzle::DialogEditNozzle(QWidget *parent) :
     _ui(new Ui::DialogEditNozzle),
     _nozzle( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -139,16 +139,14 @@ int main(int argc, char *argv[])
 {
     setlocale( LC_ALL, "C" );
 
-#   ifdef _LINUX_
-    //setenv( "LC_NUMERIC", "en_US", 1 );
-#   endif
+    QLocale::setDefault( QLocale::system() );
 
     QApplication *app = new QApplication( argc, argv );
 
-    app->setApplicationName( APP_NAME );
-    app->setApplicationVersion( APP_VER );
-    app->setOrganizationDomain( ORG_DOMAIN );
-    app->setOrganizationName( ORG_NAME );
+    app->setApplicationName    ( APP_NAME   );
+    app->setApplicationVersion ( APP_VER    );
+    app->setOrganizationDomain ( ORG_DOMAIN );
+    app->setOrganizationName   ( ORG_NAME   );
 
     MainWindow *win = new MainWindow();
     win->show();

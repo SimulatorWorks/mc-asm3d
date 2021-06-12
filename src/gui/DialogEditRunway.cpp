@@ -137,7 +137,7 @@ DialogEditRunway::DialogEditRunway(QWidget *parent) :
     _ui(new Ui::DialogEditRunway),
     _runway( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -135,7 +135,7 @@ DialogEditNodeFile::DialogEditNodeFile(QWidget *parent) :
     _ui(new Ui::DialogEditNodeFile),
     _file ( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

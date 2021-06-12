@@ -133,7 +133,7 @@ DialogEditLOD::DialogEditLOD(QWidget *parent) :
     _ui(new Ui::DialogEditLOD),
     _lod( nullptr )
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////

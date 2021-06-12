@@ -163,7 +163,7 @@ DialogEditGap::DialogEditGap(QWidget *parent) :
     QDialog(parent),
     _ui(new Ui::DialogEditGap)
 {
-    _ui->setupUi(this);
+    _ui->setupUi( this );
 }
 
 ////////////////////////////////////////////////////////////////////////////////
