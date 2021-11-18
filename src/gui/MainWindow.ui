@@ -62,7 +62,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -92,6 +92,8 @@
     <addaction name="separator"/>
     <addaction name="actionViewOrbit"/>
     <addaction name="actionViewTrack"/>
+    <addaction name="separator"/>
+    <addaction name="actionLighting"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -169,6 +171,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionLighting">
+   <property name="text">
+    <string>Lighting</string>
    </property>
   </action>
  </widget>

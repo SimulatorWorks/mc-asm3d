@@ -165,8 +165,8 @@ void ManipulatorOrbit::boundDistance()
     {
         setDistance( 1.0e8 );
     }
-    else if ( getDistance() < 1.0 )
+    else if ( getDistance() < 0.1 )
     {
-        setDistance( 1.0 );
+        setDistance( 0.1 );
     }
 }

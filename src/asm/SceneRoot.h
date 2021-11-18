@@ -129,6 +129,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <osg/Group>
+#include <osg/Light>
+#include <osg/Switch>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -152,11 +154,23 @@ public:
     /** */
     void setRootNode( osg::Node *rootNode );
 
+    void setLightingPositionX( double x );
+    void setLightingPositionY( double y );
+    void setLightingPositionZ( double z );
+
+    void setLightingEnabled( bool enabled );
+
 private:
 
     osg::ref_ptr<osg::Group> _sceneRoot;
 
     osg::ref_ptr<osg::Node> _rootNode;
+
+    osg::ref_ptr<osg::Light> _light;
+    osg::ref_ptr<osg::Switch> _lightSwitch;
+    osg::Vec4d _lightPos;
+
+    bool _lightEnabled { true };
 
     void createSceneLight();
 };

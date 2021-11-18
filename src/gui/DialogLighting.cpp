@@ -123,120 +123,124 @@
  *     party to this document and has no duty or obligation with respect to
  *     this CC0 or use of the Work.
  ******************************************************************************/
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#include <gui/DialogLighting.h>
+#include <ui_DialogLighting.h>
 
-////////////////////////////////////////////////////////////////////////////////
-
-#include <QMainWindow>
 #include <QSettings>
-#include <QShortcut>
 
-#include "DialogLighting.h"
-#include "DialogRotor.h"
-#include "RecentFileAction.h"
+#include <defs.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 
-namespace Ui
+DialogLighting::DialogLighting( QWidget *parent ) :
+    QDialog( parent ),
+    _ui( new Ui::DialogLighting ),
+    _sceneRoot ( nullptr )
 {
-    class MainWindow;
+    _ui->setupUi( this );
+
+    connect( this, SIGNAL(accepted()), this, SLOT(on_accepted()) );
+    connect( this, SIGNAL(rejected()), this, SLOT(on_rejected()) );
+
+    settingsRead();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** */
-class MainWindow : public QMainWindow
+DialogLighting::~DialogLighting()
 {
-    Q_OBJECT
-    
-public:
-
-    /** */
-    explicit MainWindow( QWidget *parent = nullptr );
-
-    /** */
-    virtual ~MainWindow();
-
-protected:
-
-    /** */
-    void closeEvent( QCloseEvent *event );
-
-    /** */
-    void keyPressEvent( QKeyEvent *event );
-
-    /** */
-    void timerEvent( QTimerEvent *event );
-    
-private:
-
-    Ui::MainWindow *_ui;        ///<
-
-    DialogLighting *_dialogLighting;
-    DialogRotor *_dialogRotor;  ///<
-
-    QShortcut *_shortcutSave;
-    QShortcut *_shortcutExport;
-    QShortcut *_shortcutRefresh;
-
-    bool _saved;                ///<
-    int _timerId;               ///<
-
-    QString _currentFile;       ///<
-
-    QStringList _recentFilesList;   ///<
-    std::vector< RecentFileAction* > _recentFilesActions;
-
-    void askIfSave();
-
-    void newFile();
-    void openFile();
-    void saveFile();
-    void saveFileAs();
-    void exportFileAs();
-
-    void readFile( QString fileName );
-    void saveFile( QString fileName );
-    void exportAs( QString fileName );
-
-    void settingsRead();
-    void settingsRead_RecentFiles( QSettings &settings );
-
-    void settingsSave();
-    void settingsSave_RecentFiles( QSettings &settings );
-
-    void updateGUI();
-    void updateRecentFiles( QString file = "" );
-
-public slots:
-
-    void document_changed();
-    void recentFile_triggered( int id );
-
-private slots:
-
-    void on_actionNew_triggered();
-    void on_actionOpen_triggered();
-    void on_actionSave_triggered();
-    void on_actionSaveAs_triggered();
-    void on_actionExport_triggered();
-    void on_actionExit_triggered();
-
-    void on_actionClearRecent_triggered();
-
-    void on_actionRotor_triggered();
-
-    void on_actionRefresh_triggered();
-
-    void on_actionViewOrbit_triggered();
-    void on_actionViewTrack_triggered();
-
-    void on_actionLighting_triggered();
-
-    void on_actionAbout_triggered();
-};
+    if ( _ui ) { delete _ui; } _ui = nullptr;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#endif // MAINWINDOW_H
+void DialogLighting::updateLighting()
+{
+    if ( _sceneRoot )
+    {
+        _sceneRoot->setLightingPositionX( _ui->spinBox_X->value() );
+        _sceneRoot->setLightingPositionY( _ui->spinBox_Y->value() );
+        _sceneRoot->setLightingPositionZ( _ui->spinBox_Z->value() );
+        _sceneRoot->setLightingEnabled( _ui->checkBoxEnabled->isChecked() );
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::settingsRead()
+{
+    QSettings settings( ORG_NAME, APP_NAME );
+
+    settings.beginGroup( "dialog_lighting" );
+
+    _ui->spinBox_X->setValue( settings.value( "position_x",     0 ).toInt() );
+    _ui->spinBox_Y->setValue( settings.value( "position_y",     0 ).toInt() );
+    _ui->spinBox_Z->setValue( settings.value( "position_z", 10000 ).toInt() );
+
+    _ui->checkBoxEnabled->setChecked( settings.value( "enabled", 1 ).toBool() );
+
+
+    settings.endGroup();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::settingsSave()
+{
+    QSettings settings( ORG_NAME, APP_NAME );
+
+    settings.beginGroup( "dialog_lighting" );
+
+    settings.setValue( "position_x", _ui->spinBox_X->value() );
+    settings.setValue( "position_y", _ui->spinBox_Y->value() );
+    settings.setValue( "position_z", _ui->spinBox_Z->value() );
+
+    settings.setValue( "enabled", _ui->checkBoxEnabled->isChecked() ? 1 : 0 );
+
+    settings.endGroup();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::on_accepted()
+{
+    settingsSave();
+    updateLighting();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::on_rejected()
+{
+    settingsRead();
+    updateLighting();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::on_spinBox_X_valueChanged(int arg1)
+{
+    if ( _sceneRoot ) _sceneRoot->setLightingPositionX( arg1 );
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::on_spinBox_Y_valueChanged(int arg1)
+{
+    if ( _sceneRoot ) _sceneRoot->setLightingPositionY( arg1 );
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::on_spinBox_Z_valueChanged(int arg1)
+{
+    if ( _sceneRoot ) _sceneRoot->setLightingPositionZ( arg1 );
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DialogLighting::on_checkBoxEnabled_toggled(bool checked)
+{
+    if ( _sceneRoot ) _sceneRoot->setLightingEnabled( checked );
+}
+

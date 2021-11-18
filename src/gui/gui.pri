@@ -11,6 +11,7 @@ HEADERS += \
     $$PWD/DialogEditSmoke.h \
     $$PWD/DialogEditSwitch.h \
     $$PWD/DialogEditWorld.h \
+    $$PWD/DialogLighting.h \
     $$PWD/DialogRotor.h \
     $$PWD/DialogWGS.h \
     $$PWD/GraphicsWindowQt.h \
@@ -33,6 +34,7 @@ SOURCES += \
     $$PWD/DialogEditSmoke.cpp \
     $$PWD/DialogEditSwitch.cpp \
     $$PWD/DialogEditWorld.cpp \
+    $$PWD/DialogLighting.cpp \
     $$PWD/DialogRotor.cpp \
     $$PWD/DialogWGS.cpp \
     $$PWD/GraphicsWindowQt.cpp \
@@ -55,6 +57,7 @@ FORMS += \
     $$PWD/DialogEditSmoke.ui \
     $$PWD/DialogEditSwitch.ui \
     $$PWD/DialogEditWorld.ui \
+    $$PWD/DialogLighting.ui \
     $$PWD/DialogRotor.ui \
     $$PWD/DialogWGS.ui \
     $$PWD/MainWindow.ui \

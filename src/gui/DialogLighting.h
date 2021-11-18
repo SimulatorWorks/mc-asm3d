@@ -123,120 +123,62 @@
  *     party to this document and has no duty or obligation with respect to
  *     this CC0 or use of the Work.
  ******************************************************************************/
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef DIALOGLIGHTING_H
+#define DIALOGLIGHTING_H
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <QMainWindow>
-#include <QSettings>
-#include <QShortcut>
+#include <QDialog>
 
-#include "DialogLighting.h"
-#include "DialogRotor.h"
-#include "RecentFileAction.h"
+#include <asm/SceneRoot.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 
 namespace Ui
 {
-    class MainWindow;
+    class DialogLighting;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** */
-class MainWindow : public QMainWindow
+class DialogLighting : public QDialog
 {
     Q_OBJECT
-    
+
 public:
 
-    /** */
-    explicit MainWindow( QWidget *parent = nullptr );
+    explicit DialogLighting( QWidget *parent = nullptr );
 
-    /** */
-    virtual ~MainWindow();
+    ~DialogLighting();
 
-protected:
+    void setSceneRoot( SceneRoot *sceneRoot )
+    {
+        _sceneRoot = sceneRoot;
+    }
 
-    /** */
-    void closeEvent( QCloseEvent *event );
+    void updateLighting();
 
-    /** */
-    void keyPressEvent( QKeyEvent *event );
-
-    /** */
-    void timerEvent( QTimerEvent *event );
-    
 private:
 
-    Ui::MainWindow *_ui;        ///<
+    Ui::DialogLighting *_ui;
 
-    DialogLighting *_dialogLighting;
-    DialogRotor *_dialogRotor;  ///<
-
-    QShortcut *_shortcutSave;
-    QShortcut *_shortcutExport;
-    QShortcut *_shortcutRefresh;
-
-    bool _saved;                ///<
-    int _timerId;               ///<
-
-    QString _currentFile;       ///<
-
-    QStringList _recentFilesList;   ///<
-    std::vector< RecentFileAction* > _recentFilesActions;
-
-    void askIfSave();
-
-    void newFile();
-    void openFile();
-    void saveFile();
-    void saveFileAs();
-    void exportFileAs();
-
-    void readFile( QString fileName );
-    void saveFile( QString fileName );
-    void exportAs( QString fileName );
+    SceneRoot *_sceneRoot;
 
     void settingsRead();
-    void settingsRead_RecentFiles( QSettings &settings );
-
     void settingsSave();
-    void settingsSave_RecentFiles( QSettings &settings );
-
-    void updateGUI();
-    void updateRecentFiles( QString file = "" );
-
-public slots:
-
-    void document_changed();
-    void recentFile_triggered( int id );
 
 private slots:
 
-    void on_actionNew_triggered();
-    void on_actionOpen_triggered();
-    void on_actionSave_triggered();
-    void on_actionSaveAs_triggered();
-    void on_actionExport_triggered();
-    void on_actionExit_triggered();
+    void on_accepted();
+    void on_rejected();
 
-    void on_actionClearRecent_triggered();
+    void on_spinBox_X_valueChanged(int arg1);
+    void on_spinBox_Y_valueChanged(int arg1);
+    void on_spinBox_Z_valueChanged(int arg1);
 
-    void on_actionRotor_triggered();
-
-    void on_actionRefresh_triggered();
-
-    void on_actionViewOrbit_triggered();
-    void on_actionViewTrack_triggered();
-
-    void on_actionLighting_triggered();
-
-    void on_actionAbout_triggered();
+    void on_checkBoxEnabled_toggled(bool checked);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#endif // MAINWINDOW_H
+#endif // DIALOGLIGHTING_H

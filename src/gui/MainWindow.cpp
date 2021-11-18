@@ -146,6 +146,7 @@ MainWindow::MainWindow( QWidget *parent ) :
     QMainWindow ( parent ),
     _ui ( new Ui::MainWindow ),
 
+    _dialogLighting ( nullptr ),
     _dialogRotor ( nullptr ),
 
     _shortcutSave ( nullptr ),
@@ -159,6 +160,7 @@ MainWindow::MainWindow( QWidget *parent ) :
 
     connect( _ui->widgetDoc, SIGNAL(changed()), this, SLOT(document_changed()) );
 
+    _dialogLighting = new DialogLighting( this );
     _dialogRotor = new DialogRotor( this );
 
     _shortcutSave = new QShortcut( QKeySequence(Qt::CTRL + Qt::Key_S), this, SLOT(on_actionSave_triggered()) );
@@ -166,6 +168,9 @@ MainWindow::MainWindow( QWidget *parent ) :
     _shortcutRefresh =  new QShortcut( QKeySequence(Qt::CTRL + Qt::Key_R), this, SLOT(on_actionRefresh_triggered()) );
 
     settingsRead();
+
+    _dialogLighting->setSceneRoot( _ui->widgetCGI->getSceneRoot() );
+    _dialogLighting->updateLighting();
 
     _timerId = startTimer( 50 );
 
@@ -596,6 +601,13 @@ void MainWindow::on_actionViewOrbit_triggered()
 void MainWindow::on_actionViewTrack_triggered()
 {
     _ui->widgetCGI->setManipulatorTrack( _ui->widgetDoc->getCurrentNode() );
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void MainWindow::on_actionLighting_triggered()
+{
+    _dialogLighting->show();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -162,6 +162,8 @@ public:
     /** */
     void update();
 
+    SceneRoot* getSceneRoot() { return _sceneRoot; }
+
     void setManipulatorOrbit( osg::Node *node );
     void setManipulatorTrack( osg::Node *node );
 
